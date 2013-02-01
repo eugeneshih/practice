@@ -1,7 +1,9 @@
 #include <cassert>
 #include <iostream>
 
-static bool binary_search(int *, int, int);
+static bool binary_search(int *sorted_array, int sz, int value);
+static bool binary_search_with_idx(int *sorted_array,
+                                   int sz, int value, int *val_idx);
 
 int
 main(void)
@@ -55,9 +57,17 @@ main(void)
     assert(result == false);
     std::cout << "done" << std::endl;
 
-    return true;
+    return 0;
 }
 
+
+static bool binary_search_with_idx(int *sorted_array,
+                                   int array_sz,
+                                   int value,
+                                   int *val_idx)
+{
+    return false;
+}
 
 static bool binary_search(int *sorted_array,
                           int array_sz,
