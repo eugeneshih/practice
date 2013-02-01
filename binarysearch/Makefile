@@ -21,4 +21,4 @@ $(PROGNAME): $(OBJS)
 .PHONY: clean
 
 clean:
-	rm -f $(OBJDIR)/*.o $(PROGNAME)
+	rm -f $(OBJDIR)/*.o $(PROGNAME) *~ $(SRCDIR)/*~
