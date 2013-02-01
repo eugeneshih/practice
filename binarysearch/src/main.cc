@@ -2,8 +2,9 @@
 #include <iostream>
 
 static bool binary_search(int *sorted_array, int sz, int value);
-static bool binary_search_with_idx(int *sorted_array,
-                                   int sz, int value, int *val_idx);
+static int binary_search_with_idx(int *sorted_array,
+                                  int low, int high,
+                                  int value);
 
 int
 main(void)
@@ -57,16 +58,48 @@ main(void)
     assert(result == false);
     std::cout << "done" << std::endl;
 
+    // success
+    index = binary_search_with_idx(test_input2,
+                                   0,
+                                   sizeof(test_input2)/sizeof(int)-1,
+                                   11);
+    std::cout << "index: " << index << " done" << std::endl;
+    assert(index == 11);
+
     return 0;
 }
 
 
-static bool binary_search_with_idx(int *sorted_array,
-                                   int array_sz,
-                                   int value,
-                                   int *val_idx)
+static int binary_search_with_idx(int *sorted_array,
+                                  int low, int high,
+                                  int value)
 {
-    return false;
+    // print out sorted array
+    for(int i = low; i <= high; i++) {
+        std::cout << sorted_array[i] << " ";
+    }
+    std::cout << std::endl;
+
+    if (low == high) {
+        return -1;
+    }
+    
+    int med_idx = (high + low) / 2;
+    int median = sorted_array[med_idx];
+    
+    if(median == value) {
+        return med_idx;
+    } else if(med_idx == 1) {
+        return -1;
+    } else if (value < median) {
+        return binary_search_with_idx(sorted_array,
+                                      low, med_idx,
+                                      value);
+    } else {
+        return binary_search_with_idx(sorted_array,
+                                      med_idx+1, high,
+                                      value);
+    }
 }
 
 static bool binary_search(int *sorted_array,
