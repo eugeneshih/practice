@@ -1,4 +1,7 @@
 #include <iostream>
+#include <cstdlib>
+
+void quicksort(int *input, int nelem);
 
 bool
 isEqual(const int &input, const int &output)
@@ -11,7 +14,6 @@ isEqual(const int &input, const int &output)
     return true;
 }
 
-    
 int
 main(void)
 {
@@ -19,7 +21,8 @@ main(void)
     int input[] = {10, 4, 6, 2, 8, 3, 9, 1, 7, 5};
     int output[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    quicksort(input);
+    // initializing vector?
+    quicksort(input, 10);
 
     assert(isEqual(input, output));
     
@@ -27,9 +30,13 @@ main(void)
 }
 
 void
-quicksort(int &)
+quicksort(int *input, int nelem)
 {
+    // find pivot
+    int pividx = rand() % nelem;
+    int pivot = input[pividx];
 
+    
 }
 
 
