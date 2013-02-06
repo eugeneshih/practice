@@ -33,10 +33,27 @@ void
 quicksort(int *input, int nelem)
 {
     // find pivot
-    int pividx = rand() % nelem;
-    int pivot = input[pividx];
+    int pivot = input[0];
 
-    
+    // two temporary arrays (should be able to do in place)
+    int less[nelem];
+    int greater[nelem];
+    int l = 0;
+    int g = 0;
+
+    for(int k = 1; k < nelem; k++) {
+        if(input[k] < nelem) {
+            less[l] = input[k];
+            l++;
+        } else {
+            greater[g] = input[k];
+            g++;
+        }
+    }
+    less[k] = pivot;    
+    for(int k = l + 1; k < nelem; k++) {
+        less[k] = greater[nelem - l + k];
+    }
 }
 
 
