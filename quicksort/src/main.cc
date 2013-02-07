@@ -1,12 +1,13 @@
 #include <iostream>
 #include <cstdlib>
+#include <cassert>
 
 void quicksort(int *input, int nelem);
 
 bool
-isEqual(const int &input, const int &output)
+isEqual(const int *input, const int *output)
 {
-    for(int i = 0; i < sizeof(input)/sizeof(int); i++) {
+    for(unsigned int i = 0; i < sizeof(input)/sizeof(int); i++) {
         if (input[i] != output[i]) {
             return false;
         }
@@ -32,28 +33,26 @@ main(void)
 void
 quicksort(int *input, int nelem)
 {
-    // find pivot
+    std::cout << "nelem: " << nelem << std::endl;
+// find pivot
+    if (nelem <= 1) {
+        return;
+    }
     int pivot = input[0];
 
-    // two temporary arrays (should be able to do in place)
-    int less[nelem];
-    int greater[nelem];
-    int l = 0;
-    int g = 0;
-
+    int small = 0, big = nelem-1;
     for(int k = 1; k < nelem; k++) {
-        if(input[k] < nelem) {
-            less[l] = input[k];
-            l++;
-        } else {
-            greater[g] = input[k];
-            g++;
+        if(input[k] < pivot) {
+            input[small++] = input[k];
+        } else if (input[k] >= pivot) {
+            input[big--] = input[k];
         }
+        std::cout << small << ", " << big << std::endl;
     }
-    less[k] = pivot;    
-    for(int k = l + 1; k < nelem; k++) {
-        less[k] = greater[nelem - l + k];
-    }
+    input[small] = pivot;
+    quicksort(&input[0], small - 1);
+    std::cout << "branch other" << std::endl;
+    quicksort(&input[small+1], nelem - small);
 }
 
 
