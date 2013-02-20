@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include <cstring>
 
 void quicksort(int *input, int nelem);
 
@@ -33,26 +34,7 @@ main(void)
 void
 quicksort(int *input, int nelem)
 {
-    std::cout << "nelem: " << nelem << std::endl;
-// find pivot
-    if (nelem <= 1) {
-        return;
-    }
-    int pivot = input[0];
-
-    int small = 0, big = nelem-1;
-    for(int k = 1; k < nelem; k++) {
-        if(input[k] < pivot) {
-            input[small++] = input[k];
-        } else if (input[k] >= pivot) {
-            input[big--] = input[k];
-        }
-        std::cout << small << ", " << big << std::endl;
-    }
-    input[small] = pivot;
-    quicksort(&input[0], small - 1);
-    std::cout << "branch other" << std::endl;
-    quicksort(&input[small+1], nelem - small);
+    
 }
 
 
